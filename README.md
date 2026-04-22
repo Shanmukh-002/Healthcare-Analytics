@@ -63,22 +63,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-2) Set environment variables (or edit `.env`):
-
-For local runs, `DB_HOST` should typically be `localhost`. This repo’s `.env` is set up for local runs by default.
-
-Docker Compose uses `.env.docker` (which sets `DATABASE_URL=postgresql://...@postgres:5432/...`, resolvable only inside the Compose network).
-
-Optional: create a `.env.local` for per-machine local overrides:
-
-```bash
-DB_USER=postgres
-DB_PASSWORD=postgres
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=healthcare_db
-```
-
+2) Set environment variables (or edit `.env`)
 
 3) Run the pipeline:
 
