@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Healthcare analytics data model (dim_patient, dim_department, fact_visits)">
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .title { font: 700 26px -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 14px -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif; fill: #475569; }
+      .box { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 2; }
+      .boxHeader { fill: #e2e8f0; }
+      .boxTitle { font: 700 16px -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif; fill: #0f172a; }
+      .col { font: 13px ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; fill: #0f172a; }
+      .muted { fill: #64748b; }
+      .pk { fill: #0f172a; font-weight: 700; }
+      .fk { fill: #0f172a; font-weight: 700; }
+      .line { stroke: #334155; stroke-width: 2; fill: none; }
+      .badge { font: 700 11px -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#334155"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="720"/>
+  <text class="title" x="56" y="64">Healthcare Analytics — Data Model</text>
+  <text class="subtitle" x="56" y="92">Dimensions feed a single fact table used for KPIs, trends, wait times, costs, and satisfaction analysis.</text>
+
+  <!-- dim_patient -->
+  <g transform="translate(56,140)">
+    <rect class="box" x="0" y="0" width="360" height="220" rx="14"/>
+    <rect class="boxHeader" x="0" y="0" width="360" height="44" rx="14"/>
+    <text class="boxTitle" x="16" y="28">dim_patient</text>
+    <text class="col pk" x="16" y="72">PK  patient_id</text>
+    <text class="col" x="16" y="96">gender</text>
+    <text class="col" x="16" y="120">age</text>
+    <text class="col" x="16" y="144">city</text>
+    <text class="col" x="16" y="168">insurance_type</text>
+    <text class="col muted" x="16" y="200">One row per patient.</text>
+  </g>
+
+  <!-- dim_department -->
+  <g transform="translate(56,410)">
+    <rect class="box" x="0" y="0" width="360" height="220" rx="14"/>
+    <rect class="boxHeader" x="0" y="0" width="360" height="44" rx="14"/>
+    <text class="boxTitle" x="16" y="28">dim_department</text>
+    <text class="col pk" x="16" y="72">PK  department_id</text>
+    <text class="col" x="16" y="96">division_name</text>
+    <text class="col" x="16" y="120">doctor_name</text>
+    <text class="col" x="16" y="144">specialty</text>
+    <text class="col muted" x="16" y="200">One row per department/doctor.</text>
+  </g>
+
+  <!-- fact_visits -->
+  <g transform="translate(520,220)">
+    <rect class="box" x="0" y="0" width="624" height="410" rx="14"/>
+    <rect class="boxHeader" x="0" y="0" width="624" height="44" rx="14"/>
+    <text class="boxTitle" x="16" y="28">fact_visits</text>
+
+    <text class="col pk" x="16" y="72">PK  visit_id</text>
+    <text class="col fk" x="16" y="96">FK  patient_id → dim_patient.patient_id</text>
+    <text class="col fk" x="16" y="120">FK  department_id → dim_department.department_id</text>
+
+    <text class="col" x="16" y="154">visit_date</text>
+    <text class="col" x="16" y="178">visit_type</text>
+    <text class="col" x="16" y="202">er_wait_time_min</text>
+    <text class="col" x="16" y="226">days_stayed</text>
+    <text class="col" x="16" y="250">treatment_cost</text>
+    <text class="col" x="16" y="274">charges_per_md</text>
+    <text class="col" x="16" y="298">satisfaction_category</text>
+
+    <text class="col" x="340" y="154">year</text>
+    <text class="col" x="340" y="178">month</text>
+    <text class="col" x="340" y="202">month_name</text>
+    <text class="col" x="340" y="226">quarter</text>
+
+    <text class="col muted" x="16" y="356">Grain: one row per visit.</text>
+    <text class="col muted" x="16" y="380">Used to build views and power the dashboard filters.</text>
+  </g>
+
+  <!-- relationships -->
+  <path class="line" d="M 416 220 C 470 220, 470 316, 520 316" marker-end="url(#arrow)"/>
+  <path class="line" d="M 416 520 C 470 520, 470 340, 520 340" marker-end="url(#arrow)"/>
+
+  <!-- legend -->
+  <g transform="translate(56,650)">
+    <text class="subtitle" x="0" y="0">
+      Legend:
+    </text>
+    <text class="col" x="70" y="0"><tspan class="pk">PK</tspan> primary key</text>
+    <text class="col" x="230" y="0"><tspan class="fk">FK</tspan> foreign key</text>
+  </g>
+</svg>
+
