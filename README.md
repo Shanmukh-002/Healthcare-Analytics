@@ -6,6 +6,15 @@ This application generates synthetic healthcare visit data, stores it in Postgre
 
 ![Healthcare Analytics demo](Health_demo.gif)
 
+## Data model
+
+See `docs/data_model.md` for notes.
+
+<picture>
+  <source srcset="docs/data_model.svg" type="image/svg+xml">
+  <img src="Data%20model.png" alt="Healthcare analytics data model diagram">
+</picture>
+
 ## What’s inside
 
 - `etl/` — data generation, cleaning, database load, and view creation
